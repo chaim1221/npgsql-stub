@@ -1,0 +1,67 @@
+# Autosave files
+*~
+
+# SQLite
+*.db
+
+# build
+[Oo]bj/
+[Bb]in/
+packages/
+TestResults/
+
+# globs
+Makefile.in
+*.DS_Store
+*.sln.cache
+*.suo
+*.cache
+*.pidb
+*.userprefs
+*.usertasks
+config.log
+config.make
+config.status
+aclocal.m4
+install-sh
+autom4te.cache/
+*.user
+*.tar.gz
+tarballs/
+test-results/
+Thumbs.db
+.vs/
+
+# Mac/bundle stuff
+*.dmg
+*.app
+Machete.Web/Content/css.css
+
+# resharper
+*_Resharper.*
+*.Resharper
+
+# dotCover
+*.dotCover
+
+# idea
+.idea/
+
+Machete\.Web/Content/reports\.min\.js
+
+Machete\.Web/Content/reports\.js
+
+Machete\.Web/Content/reportcss\.min\.css
+
+Machete\.Web/Content/reportcss\.css
+
+Machete\.Web/Content/jquery\.min\.js
+
+Machete\.Web/Content/jquery\.js
+
+Machete\.Web/Content/Machete\.css
+Machete\.Web/Content/Machete\.min\.css
+
+Machete\.Web/Published
+
+machete1env.list
