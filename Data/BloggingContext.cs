@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using stub.PostgreSQL;
 
-    public class BloggingContext : DbContext
+public class BloggingContext : DbContext
+{
+    public BloggingContext (DbContextOptions<BloggingContext> options)
+        : base(options)
     {
-        public BloggingContext (DbContextOptions<BloggingContext> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<stub.PostgreSQL.Blog> Blog { get; set; }
     }
+
+    public DbSet<Blog> Blogs { get; set; }
+
+    public DbSet<Post> Posts { get; set; }
+}

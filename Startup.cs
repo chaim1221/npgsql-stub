@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using stub.PostgreSQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,9 +25,14 @@ namespace stub
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connString = Configuration.GetConnectionString("BloggingContext");
+
             services.AddEntityFrameworkNpgsql()
-               .AddDbContext<BlogContext>()
-               .BuildServiceProvider();
+                    .AddDbContext<BloggingContext>(builder =>
+                    {
+                        builder.UseNpgsql(connString, with => with.MigrationsAssembly("Machete.Data"));
+                    })
+                    .BuildServiceProvider();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

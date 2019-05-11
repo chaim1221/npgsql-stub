@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using stub.PostgreSQL;
 
 namespace stub.Controllers
 {
@@ -21,7 +20,7 @@ namespace stub.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Blog.ToListAsync());
+            return View(await _context.Blogs.ToListAsync());
         }
 
         // GET: Blogs/Details/5
@@ -32,7 +31,7 @@ namespace stub.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog
+            var blog = await _context.Blogs
                 .FirstOrDefaultAsync(m => m.BlogId == id);
             if (blog == null)
             {
@@ -72,7 +71,7 @@ namespace stub.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog.FindAsync(id);
+            var blog = await _context.Blogs.FindAsync(id);
             if (blog == null)
             {
                 return NotFound();
@@ -123,7 +122,7 @@ namespace stub.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog
+            var blog = await _context.Blogs
                 .FirstOrDefaultAsync(m => m.BlogId == id);
             if (blog == null)
             {
@@ -138,15 +137,15 @@ namespace stub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var blog = await _context.Blog.FindAsync(id);
-            _context.Blog.Remove(blog);
+            var blog = await _context.Blogs.FindAsync(id);
+            _context.Blogs.Remove(blog);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BlogExists(int id)
         {
-            return _context.Blog.Any(e => e.BlogId == id);
+            return _context.Blogs.Any(e => e.BlogId == id);
         }
     }
 }
