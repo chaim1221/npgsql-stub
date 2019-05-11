@@ -1,33 +1,24 @@
 ﻿using System;
-using Npgsql;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace stub
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-var connString = "Host=postgresql;Username=postgres;Password=passw0rD!;Database=mydatabase";
-
-using (var conn = new NpgsqlConnection(connString))
-{
-    conn.Open();
-
-    // Insert some data
-    using (var cmd = new NpgsqlCommand())
-    {
-        cmd.Connection = conn;
-        cmd.CommandText = "INSERT INTO data (some_field) VALUES (@p)";
-        cmd.Parameters.AddWithValue("p", "Hello world");
-        cmd.ExecuteNonQuery();
-    }
-
-    // Retrieve all rows
-    using (var cmd = new NpgsqlCommand("SELECT some_field FROM data", conn))
-    using (var reader = cmd.ExecuteReader())
-        while (reader.Read())
-            Console.WriteLine(reader.GetString(0));
-}
+            CreateWebHostBuilder(args).Build().Run();
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
     }
 }
